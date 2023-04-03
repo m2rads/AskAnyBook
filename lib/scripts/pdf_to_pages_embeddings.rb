@@ -1,4 +1,6 @@
 require 'tokenizer'
+require 'pdftotext'
+require 'tempfile'
 
 $de_tokenizer = Tokenizer::WhitespaceTokenizer.new
 
@@ -7,4 +9,21 @@ def count_tokens(text)
   return $de_tokenizer.tokenize(text).length()
 end
 
-puts count_tokens("hello")
+# Extract the text from the page
+def extract_pages(page_text)
+  if page_text.length == 0
+    return []
+  end
+
+  content = page_text.split.join(" ")
+  # puts "page text: #{content}"
+  outputs = [{"title": "Page #{index}", "content": content, "tokens": count_tokens(content)+4}]
+
+  return outputs
+end
+
+filename = "./lib/assets/getting-real.pdf"
+
+pages = Pdftotext.pages(filename)
+
+puts extract_pages(pages)
