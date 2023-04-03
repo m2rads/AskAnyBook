@@ -11,5 +11,13 @@ def test_query_embedding(text)
   return $embedding.get_query_embedding(text)
 end
 
-print test_get_doc_embedding("test string")
-print test_query_embedding("test query")
+def test_vector_similariy(x, y)
+  return $embedding.vector_similarity(x, y)
+end
+
+def test_load_embeddings(fname)
+  return $embedding.load_embeddings(fname)
+end 
+
+
+print test_load_embeddings("./lib/assets/getting-rea")
