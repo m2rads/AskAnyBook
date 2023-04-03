@@ -63,3 +63,7 @@ group :test do
 end
 
 gem "shakapacker", "= 6.6"
+
+gem 'ruby-openai', '~> 3.7'
+
+gem 'dot_env', '~> 0.0.3'
