@@ -67,3 +67,5 @@ gem "shakapacker", "= 6.6"
 gem 'ruby-openai', '~> 3.7'
 
 gem 'dot_env', '~> 0.0.3'
+
+gem 'tokenizer', '~> 0.3.0'
