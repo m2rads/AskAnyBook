@@ -23,8 +23,8 @@ def test_construct_prompt(question, context, df)
   return $embedding.construct_prompt(question, context, df)
 end
 
+query = "How to start a Saas business?"
+df = Daru::DataFrame.from_csv('./lib/assets/getting-real.pdf.pages.csv')
+document_embeddings = $embedding.load_embeddings("./lib/assets/getting-real.pdf.embeddings.csv")
 
-x = test_query_embedding("Hello, who are you?")
-y = test_query_embedding("what is getting real about?")
-
-print test_vector_similariy(x, y)
+print test_construct_prompt(query, document_embeddings,  df) 
