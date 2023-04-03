@@ -5,6 +5,8 @@ require 'dot_env'
 class OpenAIService
     include Singleton
 
+    current_environment = DotEnv.get_environment
+
     unless defined?(OPENAI_API_KEY)
         OPENAI_API_KEY = ENV["OPENAI_API_KEY"]
     end
