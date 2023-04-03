@@ -1,6 +1,8 @@
 require 'tokenizer'
 require 'pdftotext'
 require 'tempfile'
+require 'optparse'
+
 
 $de_tokenizer = Tokenizer::WhitespaceTokenizer.new
 
@@ -21,8 +23,18 @@ def extract_pages(page_text)
 
   return outputs
 end
+# getting filename from command line options
+options = {}
 
-filename = "./lib/assets/getting-real.pdf"
+opt_parser = OptionParser.new do |opts|
+  opts.on("-p", "--pdf FILENAME", "Name of PDF") do |pdf|
+    options[:pdf] = pdf
+  end
+end
+
+opt_parser.parse!
+
+filename = options[:pdf]
 
 pages = Pdftotext.pages(filename)
 
