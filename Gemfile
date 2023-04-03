@@ -69,3 +69,8 @@ gem 'ruby-openai', '~> 3.7'
 gem 'dot_env', '~> 0.0.3'
 
 gem 'tokenizer', '~> 0.3.0'
+
+gem 'pdftotext', '~> 0.2.0'
+
+gem 'tempfile', '~> 0.1.3'
+
