@@ -27,4 +27,4 @@ query = "How to start a Saas business?"
 df = Daru::DataFrame.from_csv('./lib/assets/getting-real.pdf.pages.csv')
 document_embeddings = $embedding.load_embeddings("./lib/assets/getting-real.pdf.embeddings.csv")
 
-print test_construct_prompt(query, document_embeddings,  df) 
+print test_answer_query_with_context(query, df, document_embeddings) 
