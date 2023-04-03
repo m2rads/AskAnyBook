@@ -88,7 +88,17 @@ class EmbeddingService
           chosen_sections_indexes.append(section_index.to_s)
         end
 
-        return  chosen_sections
+        return chosen_sections.join("")
+    end
+
+    def answer_query_with_context(query, df, document_embeddings)
+        prompt, context = construct_prompt(
+            query,
+            document_embeddings,
+            df
+        )
+        response = OpenAIService.instance.get_completion(prompt, COMPLETIONS_MODEL)
+        return response
     end
 end
 
