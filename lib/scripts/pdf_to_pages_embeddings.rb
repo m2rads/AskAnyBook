@@ -2,7 +2,8 @@ require 'tokenizer'
 require 'pdftotext'
 require 'tempfile'
 require 'optparse'
-
+require 'daru'
+require 'csv'
 
 $de_tokenizer = Tokenizer::WhitespaceTokenizer.new
 
@@ -12,7 +13,7 @@ def count_tokens(text)
 end
 
 # Extract the text from the page
-def extract_pages(page_text)
+def extract_pages(page_text, index)
   if page_text.length == 0
     return []
   end
@@ -38,4 +39,18 @@ filename = options[:pdf]
 
 pages = Pdftotext.pages(filename)
 
-puts extract_pages(pages)
+res = []
+pages.each_with_index do |page, index|
+  res += extract_pages(page.text.gsub(/[\n\t]/ , " "), index + 1)
+end
+
+res = res.select { |row| row[:tokens] < 2046 }
+
+df = Daru::DataFrame.new(res)
+
+CSV.open("#{filename}.pages.csv", "wb") do |csv|
+  csv << ["title", "content", "tokens"] 
+  res.each do |row|
+    csv << [row[:title], row[:content], row[:tokens]]
+  end
+end
