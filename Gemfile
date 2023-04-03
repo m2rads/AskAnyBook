@@ -74,3 +74,6 @@ gem 'pdftotext', '~> 0.2.0'
 
 gem 'tempfile', '~> 0.1.3'
 
+gem 'daru', '~> 0.3'
+
+gem 'csv', '~> 3.0'
