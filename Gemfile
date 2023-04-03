@@ -77,3 +77,5 @@ gem 'tempfile', '~> 0.1.3'
 gem 'daru', '~> 0.3'
 
 gem 'csv', '~> 3.0'
+
+gem 'numo-narray', '~> 0.9.2.1'
