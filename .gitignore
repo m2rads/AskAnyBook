@@ -48,4 +48,6 @@ yarn-debug.log*
 # Ignore DS_Store
 .DS_Store 
 
+lib/assets/getting-real.pdf*
+
 .env
