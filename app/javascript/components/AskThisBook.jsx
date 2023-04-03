@@ -1,4 +1,4 @@
 import React from "react";
-import "App.css";
+import "../styles/styles.css";
 const HelloMessage = ({ name }) => <h1>Hello, {name}!</h1>;
 export default HelloMessage;
