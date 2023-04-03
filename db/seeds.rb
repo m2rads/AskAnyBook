@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+question = Question.create(
+    question_text: "What is the book Getting Real about?", 
+    answer: "test"
+)
+
+question_2 = Question.create(
+    question_text: "How to deliver a software to customers faster", 
+    answer: "test"
+)
