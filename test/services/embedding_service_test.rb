@@ -19,5 +19,12 @@ def test_load_embeddings(fname)
   return $embedding.load_embeddings(fname)
 end 
 
+def test_construct_prompt(question, context, df)
+  return $embedding.construct_prompt(question, context, df)
+end
 
-print test_load_embeddings("./lib/assets/getting-rea")
+
+x = test_query_embedding("Hello, who are you?")
+y = test_query_embedding("what is getting real about?")
+
+print test_vector_similariy(x, y)
