@@ -1,10 +1,10 @@
 require_relative './openai_service.rb'
-require 'Singleton'
 require 'numo/narray'
 require 'csv'
 require 'daru'
+require 'Singleton'
 
-class EmbeddingService
+class EmbeddingService 
     include Singleton
 
     MODEL_NAME = "curie"
@@ -14,6 +14,9 @@ class EmbeddingService
     DOC_EMBEDDINGS_MODEL = "text-search-#{MODEL_NAME}-doc-001"
     QUERY_EMBEDDINGS_MODEL = "text-search-#{MODEL_NAME}-query-001"
 
+    MAX_SECTION_LEN = 500
+    SEPARATOR = "\n* "
+    SEPARATOR_LEN = 3
 
     def get_doc_embedding(text)
         return OpenAIService.instance.get_embedding(text, DOC_EMBEDDINGS_MODEL)
@@ -31,13 +34,6 @@ class EmbeddingService
     end
 
     def order_document_sections_by_query_similarity(query, contexts)
-        """
-        Find the query embedding for the supplied query, and compare it against all of the pre-calculated document embeddings
-        to find the most relevant sections.
-
-        Return the list of document sections, sorted by relevance in descending order.
-        """
-        
         query_embedding = get_query_embedding(query)
     
         document_similarities = contexts.map do |doc_index, doc_embedding|
@@ -55,7 +51,7 @@ class EmbeddingService
         fname is the path to a CSV with exactly these named columns:
             up to the length of the embedding vectors.
         """
-
+      
         data = {}
         max_dim = 0
         CSV.foreach(fname, headers: true) do |row|
@@ -68,4 +64,33 @@ class EmbeddingService
         return data
     end
 
-end 
+    def construct_prompt(question, context_embeddings, df)
+        """
+        Fetch relevant embeddings
+        """
+        most_relevant_document_sections = order_document_sections_by_query_similarity(question, context_embeddings)
+      
+        chosen_sections = []
+        chosen_sections_len = 0
+        chosen_sections_indexes = []
+      
+        most_relevant_document_sections.each do |_, section_index|
+            document_section = df.where(df["title"].eq(section_index))
+            chosen_sections_len += document_section["tokens"][0] + SEPARATOR_LEN
+            if chosen_sections_len > MAX_SECTION_LEN
+                space_left = MAX_SECTION_LEN - chosen_sections_len - SEPARATOR_LEN
+                chosen_sections.append(SEPARATOR + document_section["content"][0][0..space_left])
+                chosen_sections_indexes.append(section_index.to_s)
+                break
+            end
+      
+          chosen_sections.append(SEPARATOR + document_section["content"][0])
+          chosen_sections_indexes.append(section_index.to_s)
+        end
+
+        return  chosen_sections
+    end
+end
+
+
+  
