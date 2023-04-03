@@ -31,7 +31,7 @@ def extract_pages(page_text, index)
 
   return outputs
 end
-# getting filename from command line options
+
 options = {}
 
 opt_parser = OptionParser.new do |opts|
@@ -83,4 +83,9 @@ end
 
 doc_embeddings = compute_doc_embeddings(df)
 
-puts doc_embeddings
+CSV.open("#{filename}.embeddings.csv", "w") do |csv|
+    csv << ["title"] + (0..4095).to_a
+    doc_embeddings.each do |i, embedding|
+      csv << ["Page #{i + 1}"] + embedding
+    end
+  end
