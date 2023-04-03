@@ -30,6 +30,24 @@ class EmbeddingService
         return x_array.dot(y_array)
     end
 
+    def order_document_sections_by_query_similarity(query, contexts)
+        """
+        Find the query embedding for the supplied query, and compare it against all of the pre-calculated document embeddings
+        to find the most relevant sections.
+
+        Return the list of document sections, sorted by relevance in descending order.
+        """
+        
+        query_embedding = get_query_embedding(query)
+    
+        document_similarities = contexts.map do |doc_index, doc_embedding|
+        similarity = vector_similarity(query_embedding, doc_embedding)
+        [similarity, doc_index]
+        end.sort_by { |similarity, _| -similarity }
+    
+        document_similarities
+    end
+
     def load_embeddings(fname)
         """
         Read the document embeddings and their keys from a CSV.
