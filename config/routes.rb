@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   # root "articles#index"
   root to: 'site#index'
 
+  post '/ask', to: 'site#ask'
 end
