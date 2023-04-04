@@ -61,20 +61,27 @@ function FormContainer(props) {
       <form>
         <TextArea value={question} onChange={handleQuestionChange} />
         <div className="buttons">
-          <Button
-            label={askButton.label}
-            onClick={handleAskSubmit}
-            disabled={askButton.disable === "true"}
-          />
-          <Button
-            label="I'm feeling lucky"
-            style={feelingLuckyStyle}
-            onClick={handleFeelingLuckySubmit}
-            disabled={askButton.disable === "true"}
-          />
+          {answer ? (
+            <>
+              <ShowText text={answer} />
+            </>
+          ) : (
+            <>
+              <Button
+                label={askButton.label}
+                onClick={handleAskSubmit}
+                disabled={askButton.disable === "true"}
+              />
+              <Button
+                label="I'm feeling lucky"
+                style={feelingLuckyStyle}
+                onClick={handleFeelingLuckySubmit}
+                disabled={askButton.disable === "true"}
+              />
+            </>
+          )}
         </div>
       </form>
-      <ShowText text={answer} />
     </div>
   );
 }
