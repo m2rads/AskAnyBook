@@ -62,6 +62,10 @@ group :test do
   gem "webdrivers"
 end
 
+group :production do
+   gem 'pg'
+end
+
 gem "shakapacker", "= 6.6"
 
 gem 'ruby-openai', '~> 3.7'
