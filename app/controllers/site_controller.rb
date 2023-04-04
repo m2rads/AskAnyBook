@@ -47,8 +47,13 @@ class SiteController < ApplicationController
     end
 
     def question
-      @question = Question.find(params[:id])
-      render :index
+      question = Question.find_by(id: params[:id])
+      if question.nil?
+        redirect_to not_found_path
+      else
+        @question = question
+        render :index
+      end
     end
 
     def not_found
