@@ -4,7 +4,7 @@ import Button from "./primitives/Button";
 import ShowText from "./ShowText";
 
 function FormContainer(props) {
-  const askButtonStyle = {
+  const askButtonLabel = {
     label: "Ask Question",
     disable: "false",
   };
@@ -16,7 +16,7 @@ function FormContainer(props) {
   };
 
   const [question, setQuestion] = useState(props.question);
-  const [askButton, setAskButton] = useState(askButtonStyle);
+  const [askButton, setAskButton] = useState(askButtonLabel);
   const [answer, setAnswer] = useState("");
   const [animationFinish, setAnimiationFinish] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -83,7 +83,7 @@ function FormContainer(props) {
       disable: "false",
     });
 
-    setAnswer("");
+    setAnswer({ id: answer.id, answer: "", question: "" });
   }
 
   function handleQuestionChange(event) {
@@ -101,7 +101,7 @@ function FormContainer(props) {
       <form>
         <TextArea value={question} onChange={handleQuestionChange} />
         <div className="buttons">
-          {answer ? null : (
+          {answer.answer ? null : (
             <>
               <Button
                 label={askButton.label}
@@ -118,7 +118,7 @@ function FormContainer(props) {
           )}
         </div>
       </form>
-      {answer ? (
+      {answer.answer ? (
         <>
           <ShowText
             animationState={handleAnimationState}
