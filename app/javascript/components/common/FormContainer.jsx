@@ -25,13 +25,15 @@ function FormContainer(props) {
    * Send the request only when the form submitted state is set to true
    * This will ensure that the request is sent only when the question state
    * has updated
+   * construct url when text animation is done
    */
   useEffect(() => {
     if (formSubmitted && question) {
       sendRequest();
       setFormSubmitted(false);
     }
-  }, [question, formSubmitted]);
+    animationFinish && history.pushState({}, null, `/question/${answer.id}`);
+  }, [question, formSubmitted, animationFinish]);
 
   function sendRequest() {
     setAskButton({
@@ -49,7 +51,7 @@ function FormContainer(props) {
     })
       .then((response) => response.json())
       .then((data) => {
-        setAnswer(data.answer);
+        setAnswer(data);
         setAnimiationFinish(false);
       })
       .catch((error) => console.error(error));
@@ -118,7 +120,10 @@ function FormContainer(props) {
       </form>
       {answer ? (
         <>
-          <ShowText animationState={handleAnimationState} text={answer} />
+          <ShowText
+            animationState={handleAnimationState}
+            text={answer.answer}
+          />
           {animationFinish ? (
             <div style={{ textAlign: "left" }}>
               <Button
