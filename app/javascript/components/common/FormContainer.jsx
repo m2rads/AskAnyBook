@@ -19,6 +19,18 @@ function FormContainer(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
+
+    fetch("/ask", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": document.querySelector("meta[name=csrf-token]").content,
+      },
+      body: JSON.stringify({ question: question }),
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.error(error));
   }
 
   function handleQuestionChange(event) {
