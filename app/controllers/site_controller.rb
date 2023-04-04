@@ -1,7 +1,5 @@
 class SiteController < ApplicationController
   def index
-    @question = {
-      question_text: "What is getting real about?"
-    }
+    @question = Question.find(1)
   end
 end
