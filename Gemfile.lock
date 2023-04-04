@@ -178,6 +178,7 @@ GEM
     regexp_parser (2.7.0)
     reline (0.3.3)
       io-console (~> 0.5)
+    resemble (1.2.0)
     rexml (3.2.5)
     ruby-openai (3.7.0)
       httparty (>= 0.18.1)
@@ -238,6 +239,7 @@ DEPENDENCIES
   pdftotext (~> 0.2.0)
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.3)
+  resemble (~> 1.2)
   ruby-openai (~> 3.7)
   selenium-webdriver
   shakapacker (= 6.6)
