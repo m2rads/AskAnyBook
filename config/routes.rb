@@ -7,4 +7,7 @@ Rails.application.routes.draw do
   root to: 'site#index'
 
   post '/ask', to: 'site#ask'
+
+  get 'question/:id', to: 'site#question', as: 'question'
+
 end

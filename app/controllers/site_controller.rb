@@ -45,4 +45,9 @@ class SiteController < ApplicationController
       id: question.id
     }
     end
+
+    def question
+      @question = Question.find(params[:id])
+      render :index
+    end
 end
