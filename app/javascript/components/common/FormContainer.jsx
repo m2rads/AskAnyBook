@@ -70,6 +70,7 @@ function FormContainer(props) {
   }
 
   function handleAnimationState() {
+    console.log("this function is called ");
     setAnimiationFinish(true);
   }
 
@@ -78,19 +79,7 @@ function FormContainer(props) {
       <form>
         <TextArea value={question} onChange={handleQuestionChange} />
         <div className="buttons">
-          {answer ? (
-            <>
-              <ShowText animationState={handleAnimationState} text={answer} />
-              {animationFinish ? (
-                <div style={{ textAlign: "left" }}>
-                  <Button
-                    label="Ask another question"
-                    onClick={handleAskAnotherQuestion}
-                  />
-                </div>
-              ) : null}
-            </>
-          ) : (
+          {answer ? null : (
             <>
               <Button
                 label={askButton.label}
@@ -107,6 +96,19 @@ function FormContainer(props) {
           )}
         </div>
       </form>
+      {answer ? (
+        <>
+          <ShowText animationState={handleAnimationState} text={answer} />
+          {animationFinish ? (
+            <div style={{ textAlign: "left" }}>
+              <Button
+                label="Ask another question"
+                onClick={handleAskAnotherQuestion}
+              />
+            </div>
+          ) : null}
+        </>
+      ) : null}
     </div>
   );
 }
