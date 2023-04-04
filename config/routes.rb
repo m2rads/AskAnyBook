@@ -10,4 +10,6 @@ Rails.application.routes.draw do
 
   get 'question/:id', to: 'site#question', as: 'question'
 
+  match '*path', to: 'site#not_found', via: :all
+
 end

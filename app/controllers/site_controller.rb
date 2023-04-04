@@ -50,4 +50,8 @@ class SiteController < ApplicationController
       @question = Question.find(params[:id])
       render :index
     end
+
+    def not_found
+      render file: "#{Rails.root}/public/404.html", status: :not_found
+    end
 end
