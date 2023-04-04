@@ -2,7 +2,7 @@ require 'daru'
 
 class SiteController < ApplicationController
   def index
-      @question = Question.find(1)
+      @question = Question.find(3)
   end
 
   def ask
