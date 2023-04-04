@@ -1,12 +1,12 @@
 import React from "react";
-import { createRoot } from "react-dom/client";
+import ReactDOM from "react-dom";
 import AskThisBook from "./components/AskThisBook";
-
-const container = document.getElementById("root");
-const root = createRoot(container);
 
 document.addEventListener("DOMContentLoaded", () => {
   const node = document.getElementById("book_question");
   const data = JSON.parse(node.getAttribute("data"));
-  root.render(<AskThisBook book={data} />);
+  ReactDOM.render(
+    <AskThisBook book={data} />,
+    document.body.appendChild(document.createElement("div"))
+  );
 });
