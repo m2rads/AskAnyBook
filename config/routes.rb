@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   post '/ask', to: 'site#ask'
 
   get 'question/:id', to: 'site#question', as: 'question'
+  
+  get '/not_found', to: 'site#not_found'
 
   match '*path', to: 'site#not_found', via: :all
 
