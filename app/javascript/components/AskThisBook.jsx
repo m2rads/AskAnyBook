@@ -15,6 +15,7 @@ const AskTheBook = (props) => (
         <FormContainer question={props.book.question_text} />
       </div>
     </div>
+    <Footer />
   </div>
 );
 
