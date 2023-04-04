@@ -26,7 +26,21 @@ class SiteController < ApplicationController
       return
     end
 
-    puts question_asked
-    head :ok
+    df = Daru::DataFrame.from_csv('./lib/assets/getting-real.pdf.pages.csv')
+    document_embeddings = embedding_service.load_embeddings("./lib/assets/getting-real.pdf.embeddings.csv")
+    answer, context = embedding_service.answer_query_with_context(question_asked, df, document_embeddings)
+
+    question = Question.create(question_text:question_asked, answer:answer)
+    question.save()
+
+    puts "new question: "
+    puts question.question_text
+    puts question.ask_count
+
+    render json: {
+      question: question.question_text,
+      answer: answer,
+      id: question.id
+    }
   end
 end
