@@ -4,7 +4,7 @@ import FormContainer from "./common/FormContainer";
 import "../styles/styles.css";
 import Footer from "./common/primitives/Footer";
 
-const AskTheBook = (props) => (
+const AskThisBook = (props) => (
   <div>
     <div className="header">
       <div className="logo">
@@ -20,4 +20,4 @@ const AskTheBook = (props) => (
   </div>
 );
 
-export default AskTheBook;
+export default AskThisBook;
