@@ -17,8 +17,13 @@ function FormContainer(props) {
   const [question, setQuestion] = useState(props.question);
   const [askButton, setAskButton] = useState(askButtonStyle);
 
-  function handleSubmit(event) {
+  function handleAskSubmit(event) {
     event.preventDefault();
+
+    setAskButton({
+      label: "Asking...",
+      disable: "true",
+    });
 
     fetch("/ask", {
       method: "POST",
@@ -29,8 +34,20 @@ function FormContainer(props) {
       body: JSON.stringify({ question: question }),
     })
       .then((response) => response.json())
-      .then((data) => console.log(data))
+      .then((data) => {
+        setAnswer(data.answer);
+        setAnimiationFinish(false);
+      })
       .catch((error) => console.error(error));
+  }
+
+  function handleFeelingLuckySubmit(event) {
+    event.preventDefault();
+
+    setAskButton({
+      label: "Asking...",
+      disable: "true",
+    });
   }
 
   function handleQuestionChange(event) {
@@ -42,11 +59,16 @@ function FormContainer(props) {
     <form>
       <TextArea value={question} onChange={handleQuestionChange} />
       <div className="buttons">
-        <Button label="Ask Question" onClick={handleSubmit} />
+        <Button
+          label={askButton.label}
+          onClick={handleAskSubmit}
+          disabled={askButton.disable === "true"}
+        />
         <Button
           label="I'm feeling lucky"
           style={feelingLuckyStyle}
-          onClick={handleSubmit}
+          onClick={handleFeelingLuckySubmit}
+          disabled={askButton.disable === "true"}
         />
       </div>
     </form>
