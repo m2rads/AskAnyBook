@@ -2,6 +2,7 @@ import React from "react";
 import BookCover from "./common/BookCover";
 import FormContainer from "./common/FormContainer";
 import "../styles/styles.css";
+import Footer from "./common/primitives/Footer";
 
 const AskTheBook = (props) => (
   <div>
