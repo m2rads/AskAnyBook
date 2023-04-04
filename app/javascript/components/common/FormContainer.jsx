@@ -18,6 +18,7 @@ function FormContainer(props) {
   const [question, setQuestion] = useState(props.question);
   const [askButton, setAskButton] = useState(askButtonStyle);
   const [answer, setAnswer] = useState("");
+  const [animationFinish, setAnimiationFinish] = useState(false);
 
   function handleAskSubmit(event) {
     event.preventDefault();
@@ -38,6 +39,7 @@ function FormContainer(props) {
       .then((response) => response.json())
       .then((data) => {
         setAnswer(data.answer);
+        setAnimiationFinish(false);
       })
       .catch((error) => console.error(error));
   }
@@ -51,9 +53,24 @@ function FormContainer(props) {
     });
   }
 
+  function handleAskAnotherQuestion(event) {
+    event.preventDefault();
+
+    setAskButton({
+      label: "Ask question",
+      disable: "false",
+    });
+
+    setAnswer("");
+  }
+
   function handleQuestionChange(event) {
     setQuestion(event.target.value);
     event.preventDefault();
+  }
+
+  function handleAnimationState() {
+    setAnimiationFinish(true);
   }
 
   return (
@@ -63,7 +80,15 @@ function FormContainer(props) {
         <div className="buttons">
           {answer ? (
             <>
-              <ShowText text={answer} />
+              <ShowText animationState={handleAnimationState} text={answer} />
+              {animationFinish ? (
+                <div style={{ textAlign: "left" }}>
+                  <Button
+                    label="Ask another question"
+                    onClick={handleAskAnotherQuestion}
+                  />
+                </div>
+              ) : null}
             </>
           ) : (
             <>

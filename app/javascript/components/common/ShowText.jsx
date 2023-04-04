@@ -12,6 +12,9 @@ const ShowText = (props) => {
         setDisplayText((prev) => prev + props.text[index]);
         index++;
         timer = setTimeout(animateText, 50);
+      } else {
+        console.log(props);
+        props.animationState();
       }
     };
 
