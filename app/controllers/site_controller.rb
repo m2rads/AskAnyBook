@@ -1,9 +1,11 @@
+require 'daru'
+
 class SiteController < ApplicationController
   def index
-    @question = Question.find(1)
+      @question = Question.find(1)
   end
 
-  def ask 
+  def ask
     embedding_service = EmbeddingService.instance
 
     question_asked = params[:question].presence || ""
@@ -42,5 +44,5 @@ class SiteController < ApplicationController
       answer: answer,
       id: question.id
     }
-  end
+    end
 end
