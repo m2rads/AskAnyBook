@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TextArea from "./primitives/TextArea";
 import Button from "./primitives/Button";
 import ShowText from "./ShowText";
@@ -19,10 +19,21 @@ function FormContainer(props) {
   const [askButton, setAskButton] = useState(askButtonStyle);
   const [answer, setAnswer] = useState("");
   const [animationFinish, setAnimiationFinish] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
-  function handleAskSubmit(event) {
-    event.preventDefault();
+  /**
+   * Send the request only when the form submitted state is set to true
+   * This will ensure that the request is sent only when the question state
+   * has updated
+   */
+  useEffect(() => {
+    if (formSubmitted && question) {
+      sendRequest();
+      setFormSubmitted(false);
+    }
+  }, [question, formSubmitted]);
 
+  function sendRequest() {
     setAskButton({
       label: "Asking...",
       disable: "true",
@@ -44,13 +55,22 @@ function FormContainer(props) {
       .catch((error) => console.error(error));
   }
 
+  function handleAskSubmit(event) {
+    event.preventDefault();
+    setFormSubmitted(true);
+  }
+
   function handleFeelingLuckySubmit(event) {
     event.preventDefault();
 
-    setAskButton({
-      label: "Asking...",
-      disable: "true",
-    });
+    const options = [
+      "How to build and deliver software faster and more efficiently?",
+      "How to get feedback from end users?",
+      "How do I decide what kind of business I should start?",
+    ];
+    const random = Math.floor(Math.random() * options.length);
+    setQuestion(options[random]);
+    setFormSubmitted(true);
   }
 
   function handleAskAnotherQuestion(event) {
