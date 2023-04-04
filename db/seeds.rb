@@ -31,5 +31,5 @@ question_3 = Question.create(
     answer: "Release an MVP (minimum viable product) to a select few and talk to them 
     about what is working and what isn't. Develop learning loops with your customers 
     to check in on progress and get feedback. Encourage customers to interact with 
-    each other to get further feedback.."
+    each other to get further feedback."
 )
