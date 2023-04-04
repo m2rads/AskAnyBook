@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TextArea from "./primitives/TextArea";
 import Button from "./primitives/Button";
+import ShowText from "./ShowText";
 
 function FormContainer(props) {
   const askButtonStyle = {
@@ -16,6 +17,7 @@ function FormContainer(props) {
 
   const [question, setQuestion] = useState(props.question);
   const [askButton, setAskButton] = useState(askButtonStyle);
+  const [answer, setAnswer] = useState("");
 
   function handleAskSubmit(event) {
     event.preventDefault();
@@ -36,7 +38,6 @@ function FormContainer(props) {
       .then((response) => response.json())
       .then((data) => {
         setAnswer(data.answer);
-        setAnimiationFinish(false);
       })
       .catch((error) => console.error(error));
   }
@@ -56,22 +57,25 @@ function FormContainer(props) {
   }
 
   return (
-    <form>
-      <TextArea value={question} onChange={handleQuestionChange} />
-      <div className="buttons">
-        <Button
-          label={askButton.label}
-          onClick={handleAskSubmit}
-          disabled={askButton.disable === "true"}
-        />
-        <Button
-          label="I'm feeling lucky"
-          style={feelingLuckyStyle}
-          onClick={handleFeelingLuckySubmit}
-          disabled={askButton.disable === "true"}
-        />
-      </div>
-    </form>
+    <div>
+      <form>
+        <TextArea value={question} onChange={handleQuestionChange} />
+        <div className="buttons">
+          <Button
+            label={askButton.label}
+            onClick={handleAskSubmit}
+            disabled={askButton.disable === "true"}
+          />
+          <Button
+            label="I'm feeling lucky"
+            style={feelingLuckyStyle}
+            onClick={handleFeelingLuckySubmit}
+            disabled={askButton.disable === "true"}
+          />
+        </div>
+      </form>
+      <ShowText text={answer} />
+    </div>
   );
 }
 
