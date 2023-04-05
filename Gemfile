@@ -86,3 +86,4 @@ gem 'numo-narray', '~> 0.9.2.1'
 
 gem "resemble", "~> 1.2"
 
+gem 'matrix'
