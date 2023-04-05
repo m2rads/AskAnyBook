@@ -14,8 +14,6 @@ Install required yarn packages
 yarn install
 ```
 
-See https://github.com/psycopg/psycopg2/issues/1200
-
 3. Turn your PDF into embeddings for GPT-3:
 
 ```
