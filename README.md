@@ -41,18 +41,6 @@ rails db:migrate
 rails db:seed
 ```
 
-## Deploy to Heroku
-
-1. Create a Heroku app:
-
-```
-heroku create yourappname
-```
-
-Set config variables on Heroku to match `.env`.
-
-Note that this repo does not contain the `pages.csv` and `embeddings.csv` you'll need, generated above. You can remove `.csv` from your own `.gitignore` and push them manually via `git push heroku main`.
-
 ### Run locally
 
 To run the rails server over port 3000 for this app open a terminal window and type:
