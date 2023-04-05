@@ -54,5 +54,3 @@ And to run webpack dev server open another terminal window and run
 ```
 ./bin/webpack-dev-server
 ```
-
-Note: macOS Monterey uses port 5000 (the default port) for AirPlay sharing, so you will need to run heroku local on a different port. For example:
