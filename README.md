@@ -20,14 +20,16 @@ yarn install
 ruby ./lib/scripts/pdf_to_pages_embeddings.rb --pdf /your/path/to/book.pdf
 ```
 
-### Note
+Note
 
 This script uses `pdftotext` gem to read pdf files in ruby. In order to use this
 gem you need to install Poppler on your machine.
 
 To install Poppler using Homebrew:
 
+```
 brew install poppler
+```
 
 For more information on installing Poppler refer to:
 https://www.viget.com/articles/extract-embedded-text-from-pdfs-with-poppler-in-ruby/
