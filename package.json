@@ -2,7 +2,7 @@
   "name": "app",
   "private": true,
   "scripts": {
-    "postinstall": " bundle exec rails webpacker:install && yarn install"
+    "postinstall": "yarn install"
   },
   "dependencies": {
     "@babel/core": "7",
