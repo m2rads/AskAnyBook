@@ -24,4 +24,15 @@ class OpenAIService
         )
         return result["data"][0]["embedding"]
     end
+
+    def get_completion(prompt, model)
+        response = @client.completions(
+            parameters: {
+                model: model,
+                prompt: prompt,
+                max_tokens: 150
+        })
+
+        return response["choices"].map { |c| c["text"] }
+    end
 end
