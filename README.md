@@ -34,19 +34,12 @@ brew install poppler
 For more information on installing Poppler refer to:
 https://www.viget.com/articles/extract-embedded-text-from-pdfs-with-poppler-in-ruby/
 
-4. Set up database tables and collect static files:
+4. Set up database tables and initialize seed data:
 
 ```
 rails db:migrate
 rails db:seed
 ```
-
-5. Other things to update:
-
-- Book title
-- Book cover image
-- URL to purchase book
-- Author name and bio
 
 ## Deploy to Heroku
 
