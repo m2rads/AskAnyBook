@@ -20,7 +20,6 @@
     "shakapacker": "6.6.0",
     "style-loader": "^3.3.2",
     "terser-webpack-plugin": "5",
-    "webpack": "5",
     "webpack-assets-manifest": "5",
     "webpack-cli": "4",
     "webpack-merge": "5"
@@ -32,6 +31,7 @@
   "devDependencies": {
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.10",
     "react-refresh": "^0.14.0",
-    "webpack-dev-server": "^4.13.2"
+    "webpack-dev-server": "^4.13.2",
+    "webpack": "5"
   }
 }
