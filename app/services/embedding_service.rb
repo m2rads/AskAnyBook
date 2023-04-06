@@ -2,7 +2,7 @@ require_relative './openai_service.rb'
 require 'numo/narray'
 require 'csv'
 require 'daru'
-require 'Singleton'
+require 'singleton'
 
 class EmbeddingService 
     include Singleton
