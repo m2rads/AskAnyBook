@@ -1,14 +1,14 @@
 import React from "react";
 import BookCover from "./common/BookCover";
 import FormContainer from "./common/FormContainer";
-import "../styles/styles.css";
 import Footer from "./common/primitives/Footer";
+import gettingReal from "../assets/getting-real-cover.png";
 
 const AskThisBook = (props) => (
   <div>
     <div className="header">
       <div className="logo">
-        <BookCover url={"/assets/getting-real-cover.png"} />
+        <BookCover url={gettingReal} />
         <h1>Ask This Book</h1>
       </div>
       <div className="main">

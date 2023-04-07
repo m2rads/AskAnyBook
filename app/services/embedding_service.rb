@@ -1,4 +1,3 @@
-require_relative './openai_service.rb'
 require 'numo/narray'
 require 'csv'
 require 'daru'
@@ -19,11 +18,11 @@ class EmbeddingService
     SEPARATOR_LEN = 3
 
     def get_doc_embedding(text)
-        return OpenAIService.instance.get_embedding(text, DOC_EMBEDDINGS_MODEL)
+        return OpenaiService.instance.get_embedding(text, DOC_EMBEDDINGS_MODEL)
     end
 
     def get_query_embedding(text)
-        return OpenAIService.instance.get_embedding(text, QUERY_EMBEDDINGS_MODEL)
+        return OpenaiService.instance.get_embedding(text, QUERY_EMBEDDINGS_MODEL)
     end
 
     def vector_similarity(x, y)
@@ -110,10 +109,7 @@ class EmbeddingService
             document_embeddings,
             df
         )
-        response = OpenAIService.instance.get_completion(prompt, COMPLETIONS_MODEL)
+        response = OpenaiService.instance.get_completion(prompt, COMPLETIONS_MODEL)
         return response
     end
 end
-
-
-  

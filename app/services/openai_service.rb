@@ -2,7 +2,8 @@ require 'singleton'
 require 'openai'
 require 'dot_env'
 
-class OpenAIService
+
+class OpenaiService
     include Singleton
 
     current_environment = DotEnv.get_environment

@@ -5,7 +5,14 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 node_modules
 
-.yarn
+# .yarn
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
 
 # Ignore bundler config.
 /.bundle
@@ -48,6 +55,7 @@ yarn-debug.log*
 # Ignore DS_Store
 .DS_Store 
 
-lib/assets/getting-real.pdf*
+# ignore book pdf
+# lib/assets/getting-real.pdf*
 
 .env
