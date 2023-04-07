@@ -54,3 +54,28 @@ And to run webpack dev server open another terminal window and run
 ```
 ./bin/webpack-dev-server
 ```
+
+### Deploy to Heroku
+
+1. Create a new heroku app
+
+```
+heroku create my-app
+```
+
+2. Set heruko as remote repo
+
+```
+git push herku main
+```
+
+3. Last step is to setup database
+
+```
+heroku db:migrate
+heroku db:seed
+```
+
+Note that you would need to create your embeddings and place them in ./lib/assets/book.pdf
+
+Happy hacking
